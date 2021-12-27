@@ -19,6 +19,7 @@ function list() {
 function listMoviesCurrentlyShowing() {
   return knex("movies as m")
     .join("movies_theaters as mt", "m.movie_id", "mt.movie_id")
+    .distinct("m.*")
     .where({ "mt.is_showing": true });
 }
 
